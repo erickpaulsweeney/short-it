@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 app.post("/shortit", (req, res) => {
     console.log(req.body);
     const input = req.body.url;
-    const shortened = "http://localhost:8000/" + nanoid(6);
+    const shortened = "https://short-it-mern.herokuapp.com/" + nanoid(6);
     const text =
         "INSERT INTO shortit(original, shortened) VALUES($1, $2) RETURNING *";
     const values = [input, shortened];
@@ -32,7 +32,7 @@ app.post("/shortit", (req, res) => {
 });
 
 app.get("/:id", async (req, res) => {
-    const id = "http://localhost:8000/" + req.params.id;
+    const id = "https://short-it-mern.herokuapp.com/" + req.params.id;
     const query = {
         name: "fetch-item",
         text: "SELECT * FROM shortit WHERE shortened = $1",
